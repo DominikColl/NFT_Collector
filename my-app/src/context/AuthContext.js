@@ -16,6 +16,7 @@ import { addDoc, collection, getDocs, query, where } from '@firebase/firestore'
 import uniqid from 'uniqid'
 
 const AuthContext = React.createContext()
+
 export async function getFileNames(){
     let array=[]
     let storageRef=storage.child(`1/`).listAll().then(res=>{

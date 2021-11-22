@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import './reset.css'
 import './App.css';
 import { AuthProvider } from './context/AuthContext'
 import {

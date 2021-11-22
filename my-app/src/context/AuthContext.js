@@ -16,6 +16,45 @@ import { addDoc, collection, getDocs, query, where } from '@firebase/firestore'
 import uniqid from 'uniqid'
 
 const AuthContext = React.createContext()
+export async function getFileNames(){
+    let array=[]
+    let storageRef=storage.child(`1/`).listAll().then(res=>{
+        res.items.map(item=>{
+            array.push(item.name)
+        })
+        return array
+    })
+    return storageRef
+}
+export async function readUserFiles(uid,fileNames){
+try{
+    let array=[]
+let t=storage.child(`${uid}/${fileNames}`)
+.getDownloadURL().then(item=>{
+    return item
+})
+return t
+}catch(e){
+    console.log(e)
+}
+}
+
+export async function uploadFile (image, uid,name) {
+  let id = uniqid()
+  console.log(id)
+  let storageRef
+storageRef=storage.child(`${uid}/${name}`)
+
+try{
+    storageRef.put(image).then(() => {})
+}catch(e){
+    console.log(e)
+}
+
+  return id
+}
+
+
 
 export async function writeToDb (name, email, UID, admin) {
     try {

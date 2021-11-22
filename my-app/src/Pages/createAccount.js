@@ -7,7 +7,9 @@ export default function CreateAccount () {
   const adminYesRef = useRef()
   const adminNoRef = useRef()
   const { signup, currentUser, login } = useAuth()
-
+if(currentUser){
+    window.location='/dashboard'
+}
   async function handleSubmit (e) {
     // console.log('TESTING')
     e.preventDefault()
@@ -17,7 +19,6 @@ export default function CreateAccount () {
     // console.log(secondAdmin)
 
     try {
-      console.log('TESTING')
       let t = localStorage.setItem('loggedIn', true)
       // this can be used within our current component
       // function below creates the account
